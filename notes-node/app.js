@@ -1,9 +1,14 @@
 console.log('starting app.js');
 const fs = require('fs');
 const os = require('os');
-const notes=require('./notes.js');
+const _=require('lodash');
+
+console.log(_.isString('Amar'));
+console.log(_.uniq(['Amar','Amar',1,1,2,3]));
+
+/*const notes=require('./notes.js');
 let res= notes.add(10,5);
-console.log(res);
+console.log(res);*/
 
 /*let user = os.userInfo();
 
