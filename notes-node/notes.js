@@ -43,7 +43,10 @@ var getAll = () => {
 }
 
 var getNote = (title) => {
-    console.log("get this title", title);
+    let notes = fetchNotes();
+    let filterNote = notes.filter((note) => title === note.title);
+
+    return filterNote[0];
 }
 
 var removeNote = (title) => {
@@ -55,9 +58,14 @@ var removeNote = (title) => {
 
 }
 
+var logNote = (note) => {
+    console.log(`note is ${note.title} - ${note.body}`);
+
+}
 module.exports = {
     addNote, // if both key and value have same name use ES6 syntax = addNote: addNote
     getAll,
     getNote,
-    removeNote
+    removeNote,
+    logNote
 }

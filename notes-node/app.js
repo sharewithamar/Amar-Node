@@ -15,7 +15,7 @@ console.log('yargs', argv);
 if (command === 'add') {
     let note = notes.addNote(argv.title, argv.body);
     if (note) {
-        console.log(`note created ${note.title}`);
+        notes.logNote(note);
     }
     else {
         console.log('note already exists');
@@ -27,7 +27,13 @@ else if (command === 'list') {
     console.log('list all notes');
 }
 else if (command === 'read') {
-    console.log('read note');
+    let note = notes.getNote(argv.title);
+    if (note) {
+        notes.logNote(note);
+    }
+    else {
+        console.log(`note not found`);
+    }
 }
 else if (command === 'remove') {
     let noteRemoved = notes.removeNote(argv.title);
