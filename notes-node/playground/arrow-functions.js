@@ -11,7 +11,12 @@ var user = {
     sayHiAlt() {
         console.log(arguments);
         console.log(`Hi i'm ${this.name}`);
+    },
+    sayHiFunc: function () {
+        console.log(`Hi i'm ${this.name}`);
+
     }
 };
 user.sayHi() // will return undefined cant access this.name
 //user.sayHiAlt(1, 2, 3);
+user.sayHiFunc();
