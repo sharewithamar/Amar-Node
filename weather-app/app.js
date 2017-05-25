@@ -1,6 +1,7 @@
 
-/*const yargs = require('yargs');
+const yargs = require('yargs');
 const geocode = require('./geocode/geocode');
+const weather = require('./weather/weather');
 
 const argv = yargs
     .options({
@@ -23,26 +24,21 @@ geocode.geocodeAddress(argv.a, (errorMessage, results) => {
     }
     else {
         console.log(JSON.stringify(results, undefined, 2));
+        weather.getWeather(results.lat, results.lng, (errorMessage, weatherResults) => {
+            if (errorMessage) {
+                console.log(errorMessage);
+            }
+            else {
+                console.log(JSON.stringify(weatherResults, undefined, 2));
+
+            }
+
+        });
     }
-
-});*/
-
-
-
-//bf92275b5c0c01a953f110c98f2753fd
-
-const request = require('request');
-request({
-    url: `https://api.darksky.net/forecast/bf92275b5c0c01a953f110c98f2753fd/10.0612643,78.76772179999999`,
-    json: true
-}, (error, response, body) => {
-    if (!error && response.statusCode === 200) {
-        console.log(`tempearture is:${body.currently.temperature}`);
-    }
-
-    else {
-        console.log('Unable to fetch weather');
-    }
-
 
 });
+
+
+
+
+
