@@ -1,16 +1,41 @@
 const express = require('express');
 const hbs = require('hbs');
+const fs = require('fs');
 var app = express();
 
+hbs.registerPartials(__dirname + '/views/partials');
 app.set('view engine', 'hbs');
 
+
+app.use((req, res, next) => {
+    var now = new Date().toString();
+    let log = `${now} : ${req.method} : ${req.url}`;
+    fs.appendFile('server.log', log + '\n', (err) => {
+        if (err) {
+            console.log('unable to update log');
+        }
+    });
+    console.log(log);
+    next();
+});
+
+// app.use((req, res, next) => {
+//     res.render('maintainance.hbs');
+// });
 app.use(express.static(__dirname + '/public'));
+
+hbs.registerHelper('getCurrentYear', () => {
+    return new Date().getFullYear();
+});
+hbs.registerHelper('screamIt', (text) => {
+    return text.toUpperCase();
+});
 
 app.get('/', function (req, res) {
     res.render('home.hbs', {
-        title: 'Amar Home hbs',
-        year: new Date().getFullYear(),
-        welcome:`welcome Amar`
+        title: 'Home hbs',
+        //  year: new Date().getFullYear(),
+        welcome: `welcome Amar`
     });
 
     // res.send('<h2>Hello Amar</h2>Hello World!')
@@ -29,8 +54,8 @@ app.get('/', function (req, res) {
 app.get('/about', (req, res) => {
     //  res.send('About Page1');
     res.render('about.hbs', {
-        title: 'Amar about hbs',
-        year: new Date().getFullYear()
+        title: 'about hbs',
+        //  year: new Date().getFullYear()
     });
 });
 
