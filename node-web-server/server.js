@@ -2,6 +2,8 @@ const express= require('express');
 
 var app =express();
 
+app.use(express.static(__dirname + '/public'));
+
 app.get('/', function (req, res) {
  // res.send('<h2>Hello Amar</h2>Hello World!')
  res.send({
@@ -25,4 +27,6 @@ app.get('/bad',(req,res)=>{
         errorMessage: `Avv that's bad url..`
     });
 });
-app.listen(3000);
+app.listen(3000,()=>{
+    console.log('Server is up');
+});
