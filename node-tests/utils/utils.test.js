@@ -12,6 +12,14 @@ it('shoud add 2 numbers', () => {
 
 });
 
+it('should add async add 2 numbers',(done)=>{
+    utils.asyncAdd(10,10,(sum)=>{
+        expect(sum).toBe(20).toBeA('number');
+        done();
+    });
+});
+
+
 it('shoud square a number', () => {
     let res = utils.square(10);
     // throw new Error('Sum is wrong');
@@ -20,6 +28,13 @@ it('shoud square a number', () => {
     expect(res).toBe(100).toBeA('number');
 
 
+});
+
+it('should add async square a number',(done)=>{
+    utils.asyncSquare(10,(square)=>{
+        expect(square).toBe(100).toBeA('number');
+        done();
+    });
 });
 
 it('should expect some values', () => {
