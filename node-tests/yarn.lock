@@ -547,6 +547,10 @@ readable-stream@^2.0.5:
     string_decoder "~1.0.0"
     util-deprecate "~1.0.1"
 
+rewire@^2.5.2:
+  version "2.5.2"
+  resolved "https://registry.yarnpkg.com/rewire/-/rewire-2.5.2.tgz#6427de7b7feefa7d36401507eb64a5385bc58dc7"
+
 safe-buffer@~5.0.1:
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/safe-buffer/-/safe-buffer-5.0.1.tgz#d263ca54696cd8a306b5ca6551e92de57918fbe7"
