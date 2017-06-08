@@ -7,6 +7,14 @@ let geocodeAddress = (address) => {
 
     return new Promise((resolve, reject) => {
         request({
+            proxy: {
+                host: '127.0.0.1',
+                port: 9000,
+                auth: {
+                    username: 'mikeymike',
+                    password: 'rapunz3l'
+                }
+            },
             url: `https://maps.googleapis.com/maps/api/geocode/json?address=${userAddress}`,
             json: true
         }, (error, response, body) => {
