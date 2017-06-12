@@ -1,55 +1,30 @@
-const mongoose = require('mongoose');
+let express = require('express');
+let bodyParser= require('body-parser');
 
-mongoose.promise = global.promise;
-
-mongoose.connect('mongodb://localhost:27017/TodoApp');
-
-let Todo = mongoose.model('Todos',
-    {
-        text: {
-            type: String,
-            required: true,
-            minlength: 1,
-            trim: true
-        },
-        completed: {
-            type: Boolean,
-            default: false
-        },
-        completedAt: {
-            type: Number,
-            default: null
-
-        }
-    }
-);
-
-/*let newTodo = new Todo({
-    text: ' Good Morning  '
-});
-*/
-/*let newTodo= new Todo({
-    text: 'Eat Lunch',
-    completed: false,
-    completedAt: 123
-    
-});*/
+let {mongoose} = require('./db/mongoose');
+let {Todo} = require('./models/todo');
+let {user}= require('./models/user');
 
 
-//newTodo.save().then(doc => console.log(doc), err => console.log(err));
+let app = express();
 
-let user = mongoose.model('users',{
-  email:{
-      type:String,
-      minlength:1,
-      trim:true,
-      required:true
+app.use(bodyParser.json());
 
-  }
+app.post('/todos',(req,res)=>{
+  //  console.log(req.body);
+  let todo = new Todo({
+      text: req.body.text
+  });
+
+  todo.save().then(doc =>{
+      res.send(doc);
+  },err=>{
+      res.status(400).send(err);
+  })
+
 });
 
-let newUser = new user({
-    email: 'Amar '
-});
+app.listen('3000',()=>{
+    console.log('Started on port 3000');
+})
 
-newUser.save().then(doc => console.log(doc), err => console.log(err));
