@@ -1,6 +1,7 @@
 const express = require('express');
 const hbs = require('hbs');
 const fs = require('fs');
+const port= process.env.PORT || 3000;
 var app = express();
 
 hbs.registerPartials(__dirname + '/views/partials');
@@ -59,11 +60,18 @@ app.get('/about', (req, res) => {
     });
 });
 
+app.get('/projects', (req, res) => {
+    //  res.send('About Page1');
+    res.render('projects.hbs', {
+        title: 'projects hbs',
+        //  year: new Date().getFullYear()
+    });
+});
 app.get('/bad', (req, res) => {
     res.send({
         errorMessage: `Avv that's bad url..`
     });
 });
-app.listen(3000, () => {
-    console.log('Server is up');
+app.listen(port, () => {
+    console.log(`Server is up in ${port}`);
 });
