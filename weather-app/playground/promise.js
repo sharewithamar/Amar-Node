@@ -12,7 +12,7 @@ let asyncAdd = (a, b) => {
 };
 
 
-asyncAdd(10, '4').then(data => {
+asyncAdd(10, '4').then(data => { 
 
     console.log(data);
     return asyncAdd(data, 10);
